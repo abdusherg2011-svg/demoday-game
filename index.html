@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPITAL MYSTERY — Интеллектуальная географическая игра</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Главный контейнер приложения -->
+    <div id="app">
+        <!-- ГЛАВНОЕ МЕНЮ -->
+        <div id="main-menu" class="screen active">
+            <div class="menu-header">
+                <div class="badge">GEOGRAPHY EDITION</div>
+                <h1 class="game-title">CAPITAL <span>MYSTERY</span></h1>
+                <p class="game-subtitle">Проверьте знания столиц, стран и флагов мира</p>
+            </div>
+
+            <div class="menu-grid">
+                <button class="btn-primary" onclick="Game.startMode('capital')">
+                    <span class="icon">🏛️</span>
+                    <span class="text">
+                        <strong>Угадай столицу</strong>
+                        <small>По названию страны выберите столицу</small>
+                    </span>
+                </button>
+                <button class="btn-primary" onclick="Game.startMode('flag')">
+                    <span class="icon">🏁</span>
+                    <span class="text">
+                        <strong>Мастер Флагов</strong>
+                        <small>Определите страну по её государственному флагу</small>
+                    </span>
+                </button>
+                <button class="btn-secondary" onclick="Game.startMode('logic')">
+                    <span class="icon">🧠</span>
+                    <span class="text">
+                        <strong>Логика и факты</strong>
+                        <small>Интеллектуальные географические загадки</small>
+                    </span>
+                </button>
+            </div>
+
+            <div class="menu-footer-actions">
+                <button class="btn-small" onclick="UI.showModal('leaderboard')">🏆 Рекорды</button>
+                <button class="btn-small" onclick="UI.showModal('settings')">⚙️ Настройки</button>
+            </div>
+        </div>
+
+        <!-- ИГРОВОЙ ЭКРАН -->
+        <div id="game-screen" class="screen">
+            <header class="game-topbar">
+                <div class="left-stats">
+                    <button class="btn-icon" onclick="Game.returnToMenu()" title="В меню">🏠</button>
+                    <div class="stat-pill">Режим: <span id="current-mode-name">Столицы</span></div>
+                </div>
+                <div class="center-stats">
+                    <div class="stat-pill">❤️ Жизни: <span id="stat-lives">3</span></div>
+                    <div class="stat-pill">⭐ Счёт: <span id="stat-score">0</span></div>
+                    <div class="stat-pill">🔥 Комбо: <span id="stat-combo">0</span></div>
+                    <div class="stat-pill">⏱️ <span id="stat-timer">30</span>с</div>
+                </div>
+                <div class="right-stats">
+                    <button class="btn-icon" onclick="Game.useHint()" title="Подсказка (-50 очков)">💡</button>
+                    <button class="btn-icon" onclick="Game.togglePause()" title="Пауза">⏸️</button>
+                </div>
+            </header>
+
+            <div class="game-progress-bar">
+                <div id="progress-fill" style="width: 0%;"></div>
+            </div>
+
+            <main class="game-content-container">
+                <div class="question-card glass-panel">
+                    <div class="question-header">
+                        <span id="question-counter">Вопрос 1 / 5</span>
+                        <span class="diff-tag">Normal</span>
+                    </div>
+                    <h2 id="question-title">Загрузка задания...</h2>
+                    <div id="visual-cue-container">🏛️</div>
+                    <p id="question-prompt">Выберите правильный вариант из списка ниже:</p>
+                </div>
+
+                <div class="answer-panel glass-panel">
+                    <div id="options-grid" class="options-grid"></div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ЭКРАН ПАУЗЫ -->
+        <div id="pause-screen" class="modal-overlay hidden">
+            <div class="modal-content glass-panel">
+                <h2>ИГРА НА ПАУЗЕ</h2>
+                <button class="btn-primary" onclick="Game.togglePause()" style="margin: 15px auto;">Продолжить</button>
+                <button class="btn-secondary" onclick="Game.returnToMenu()" style="margin: 0 auto;">Главное меню</button>
+            </div>
+        </div>
+
+        <!-- ЭКРАН РЕЗУЛЬТАТОВ -->
+        <div id="gameover-screen" class="modal-overlay hidden">
+            <div class="modal-content glass-panel">
+                <h2 id="go-title">РАУНД ЗАВЕРШЕН</h2>
+                <div class="go-stats">
+                    <p>Итоговый счёт: <span id="go-score">0</span></p>
+                    <p>Правильных ответов: <span id="go-correct">0</span> / <span id="go-total">5</span></p>
+                    <p>Максимальное комбо: <span id="go-combo">0</span></p>
+                </div>
+                <div class="go-actions">
+                    <button class="btn-primary" onclick="Game.restartMode()">Играть снова</button>
+                    <button class="btn-secondary" onclick="Game.returnToMenu()">В меню</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- МОДАЛЬНЫЕ ОКНА -->
+        <div id="modal-container" class="modal-overlay hidden">
+            <div class="modal-content glass-panel large-modal">
+                <div class="modal-header">
+                    <h2 id="modal-title">Заголовок</h2>
+                    <button class="btn-close" onclick="UI.closeModal()">✕</button>
+                </div>
+                <div class="modal-body" id="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

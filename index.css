@@ -1,0 +1,373 @@
+:root {
+    --bg-deep: #050814;
+    --panel-bg: rgba(13, 20, 38, 0.9);
+    --border-glass: rgba(0, 243, 255, 0.25);
+    --neon-cyan: #00f3ff;
+    --neon-blue: #0066ff;
+    --accent-glow: 0 0 20px rgba(0, 243, 255, 0.4);
+    --text-main: #ffffff;
+    --text-muted: #8ca0c9;
+    --success: #00ff66;
+    --danger: #ff3366;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Rajdhani', sans-serif;
+    user-select: none;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #0b132b 0%, #050814 100%);
+    color: var(--text-main);
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.screen.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.glass-panel {
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-glass);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 16px;
+}
+
+/* Главное меню */
+#main-menu {
+    max-width: 700px;
+    padding: 30px;
+    text-align: center;
+}
+
+.menu-header .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(0, 243, 255, 0.1);
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    font-size: 12px;
+    letter-spacing: 2px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.game-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.game-title span {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
+}
+
+.game-subtitle {
+    color: var(--text-muted);
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.menu-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.btn-primary, .btn-secondary {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 25px;
+    background: rgba(13, 20, 38, 0.85);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    border-color: var(--neon-cyan);
+    box-shadow: var(--accent-glow);
+    transform: translateY(-2px);
+    background: rgba(0, 243, 255, 0.1);
+}
+
+.btn-primary .icon {
+    font-size: 28px;
+}
+
+.btn-primary .text strong, .btn-secondary .text strong {
+    display: block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.btn-primary .text small, .btn-secondary .text small {
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.menu-footer-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-small {
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid var(--border-glass);
+    color: var(--text-main);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-small:hover {
+    border-color: var(--neon-cyan);
+    background: rgba(0, 243, 255, 0.15);
+}
+
+/* Игровой экран */
+#game-screen {
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+.game-topbar {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.left-stats, .right-stats, .center-stats {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.stat-pill {
+    padding: 8px 15px;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-glass);
+    border-radius: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+}
+
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-glass);
+    color: var(--text-main);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    transition: all 0.2s;
+}
+
+.btn-icon:hover {
+    border-color: var(--neon-cyan);
+    box-shadow: var(--accent-glow);
+}
+
+.game-progress-bar {
+    width: 100%;
+    max-width: 800px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+#progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan));
+    box-shadow: var(--accent-glow);
+    transition: width 0.4s ease;
+}
+
+.game-content-container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.question-card {
+    padding: 25px;
+    text-align: center;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.diff-tag {
+    padding: 3px 8px;
+    background: rgba(0, 243, 255, 0.1);
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    border-radius: 4px;
+}
+
+#question-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#visual-cue-container {
+    margin: 15px 0;
+    font-size: 50px;
+}
+
+.answer-panel {
+    padding: 20px;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.option-btn {
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glass);
+    border-radius: 10px;
+    color: var(--text-main);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.option-btn:hover {
+    border-color: var(--neon-cyan);
+    background: rgba(0, 243, 255, 0.15);
+}
+
+.option-btn.correct {
+    background: rgba(0, 255, 102, 0.25) !important;
+    border-color: var(--success) !important;
+}
+
+.option-btn.wrong {
+    background: rgba(255, 51, 102, 0.25) !important;
+    border-color: var(--danger) !important;
+}
+
+/* Модальные окна */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 8, 20, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 450px;
+    padding: 30px;
+    text-align: center;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-close {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.go-stats {
+    margin: 20px 0;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.go-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
