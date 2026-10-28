@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAPITAL MYSTERY — Infinite Edition</title>
+    <title>CAPITAL MYSTERY — Ultimate Edition</title>
     <link rel="stylesheet" href="index.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -12,31 +12,31 @@
         <!-- ГЛАВНОЕ МЕНЮ -->
         <div id="main-menu" class="screen active">
             <div class="menu-header">
-                <div class="badge">AI EXPANDED v2.0</div>
+                <div class="badge">HD FLAGS & AI GEN</div>
                 <h1 class="game-title">CAPITAL <span>MYSTERY</span></h1>
-                <p class="game-subtitle">Все страны мира, сотни флагов и генератор вопросов</p>
+                <p class="game-subtitle">Реальные картинки флагов, сотни стран и расширенная база фактов</p>
             </div>
 
             <div class="menu-grid">
                 <button class="btn-primary" onclick="Game.startMode('capital')">
                     <span class="icon">🏛️</span>
                     <span class="text">
-                        <strong>Столицы мира (Все страны)</strong>
-                        <small>Угадай столицу с динамическими уровнями</small>
+                        <strong>Столицы мира</strong>
+                        <small>Угадай столицу по стране и региону</small>
                     </span>
                 </button>
                 <button class="btn-primary" onclick="Game.startMode('flag')">
                     <span class="icon">🏁</span>
                     <span class="text">
-                        <strong>Мастер Флагов (Full)</strong>
-                        <small>Все государственные флаги планеты</small>
+                        <strong>Мастер Флагов (HD)</strong>
+                        <small>Определи страну по настоящему изображению флага</small>
                     </span>
                 </button>
                 <button class="btn-secondary" onclick="Game.startMode('logic')">
                     <span class="icon">🧠</span>
                     <span class="text">
                         <strong>Географические факты</strong>
-                        <small>Интеллектуальная база фактов и загадок</small>
+                        <small>Большая база вопросов и загадок</small>
                     </span>
                 </button>
             </div>
@@ -77,7 +77,7 @@
                         <span id="question-level" class="diff-tag">Уровень 1</span>
                     </div>
                     <h2 id="question-title">Загрузка задания...</h2>
-                    <div id="visual-cue-container">🏛️</div>
+                    <div id="visual-cue-container"></div>
                     <p id="question-prompt">Выберите правильный вариант из списка ниже:</p>
                 </div>
 

@@ -273,7 +273,19 @@ body, html {
 
 #visual-cue-container {
     margin: 15px 0;
-    font-size: 50px;
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flag-img {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0, 243, 255, 0.3);
+    border: 1px solid var(--border-glass);
 }
 
 .answer-panel {

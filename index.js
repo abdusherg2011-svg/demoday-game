@@ -1,52 +1,51 @@
 /* ==========================================================
-   CAPITAL MYSTERY — Expanded World Database & AI Generator
+   CAPITAL MYSTERY — HD Flags & Expanded AI Database
    ================================================---------- */
 
-// Расширенная база данных стран мира (более 50+ стран со столицами и флагами)
+// Большая база данных с кодами для реальных картинок флагов (ISO 2-буквенные коды)
 const WORLD_DB = [
-    { country: "Япония", capital: "Токио", flag: "🇯🇵", region: "Азия" },
-    { country: "Франция", capital: "Париж", flag: "🇫🇷", region: "Европа" },
-    { country: "Германия", capital: "Берлин", flag: "🇩🇪", region: "Европа" },
-    { country: "Италия", capital: "Рим", flag: "🇮🇹", region: "Европа" },
-    { country: "Испания", capital: "Мадрид", flag: "🇪🇸", region: "Европа" },
-    { country: "Великобритания", capital: "Лондон", flag: "🇬🇧", region: "Европа" },
-    { country: "Канада", capital: "Оттава", flag: "🇨🇦", region: "Северная Америка" },
-    { country: "США", capital: "Вашингтон", flag: "🇺🇸", region: "Северная Америка" },
-    { country: "Бразилия", capital: "Бразилиа", flag: "🇧🇷", region: "Южная Америка" },
-    { country: "Аргентина", capital: "Буэнос-Айрес", flag: "🇦🇷", region: "Южная Америка" },
-    { country: "Египет", capital: "Каир", flag: "🇪🇬", region: "Африка" },
-    { country: "ЮАР", capital: "Претория", flag: "🇿🇦", region: "Африка" },
-    { country: "Австралия", capital: "Канберра", flag: "🇦🇺", region: "Океания" },
-    { country: "Индия", capital: "Нью-Дели", flag: "🇮🇳", region: "Азия" },
-    { country: "Китай", capital: "Пекин", flag: "🇨🇳", region: "Азия" },
-    { country: "Южная Корея", capital: "Сеул", flag: "🇰🇷", region: "Азия" },
-    { country: "Турция", capital: "Анкара", flag: "🇹🇷", region: "Азия/Европа" },
-    { country: "Узбекистан", capital: "Ташкент", flag: "🇺🇿", region: "Азия" },
-    { country: "Казахстан", capital: "Астана", flag: "🇰🇿", region: "Азия" },
-    { country: "Мексика", capital: "Мехико", flag: "🇲🇽", region: "Северная Америка" },
-    { country: "Италия", capital: "Рим", flag: "🇮🇹", region: "Европа" },
-    { country: "Швейцария", capital: "Берн", flag: "🇨🇭", region: "Европа" },
-    { country: "Швеция", capital: "Стокгольм", flag: "🇸🇪", region: "Европа" },
-    { country: "Норвегия", capital: "Осло", flag: "🇳🇴", region: "Европа" },
-    { country: "Финляндия", capital: "Хельсинки", flag: "🇫🇮", region: "Европа" },
-    { country: "Польша", capital: "Варшава", flag: "🇵🇱", region: "Европа" },
-    { country: "Греция", capital: "Афины", flag: "🇬🇷", region: "Европа" },
-    { country: "Португалия", capital: "Лиссабон", flag: "🇵🇹", region: "Европа" },
-    { country: "Нидерланды", capital: "Амстердам", flag: "🇳🇱", region: "Европа" },
-    { country: "ОАЭ", capital: "Абу-Даби", flag: "🇦🇪", region: "Азия" },
-    { country: "Саудовская Аравия", capital: "Эр-Рияд", flag: "🇸🇦", region: "Азия" },
-    { country: "Таиланд", capital: "Бангкок", flag: "🇹🇭", region: "Азия" },
-    { country: "Вьетнам", capital: "Ханой", flag: "🇻🇳", region: "Азия" },
-    { country: "Индонезия", capital: "Джакарта", flag: "🇮🇩", region: "Азия" },
-    { country: "Малайзия", capital: "Куала-Лумпур", flag: "🇲🇾", region: "Азия" },
-    { country: "Сингапур", capital: "Сингапур", flag: "🇸🇬", region: "Азия" },
-    { country: "Новая Зеландия", capital: "Веллингтон", flag: "🇳🇿", region: "Океания" },
-    { country: "Колумбия", capital: "Богота", flag: "🇨🇴", region: "Южная Америка" },
-    { country: "Чили", capital: "Сантьяго", flag: "🇨🇱", region: "Южная Америка" },
-    { country: "Перу", capital: "Лима", flag: "🇵🇪", region: "Южная Америка" }
+    { country: "Япония", capital: "Токио", code: "jp", region: "Азия" },
+    { country: "Франция", capital: "Париж", code: "fr", region: "Европа" },
+    { country: "Германия", capital: "Берлин", code: "de", region: "Европа" },
+    { country: "Италия", capital: "Рим", code: "it", region: "Европа" },
+    { country: "Испания", capital: "Мадрид", code: "es", region: "Европа" },
+    { country: "Великобритания", capital: "Лондон", code: "gb", region: "Европа" },
+    { country: "Канада", capital: "Оттава", code: "ca", region: "Северная Америка" },
+    { country: "США", capital: "Вашингтон", code: "us", region: "Северная Америка" },
+    { country: "Бразилия", capital: "Бразилиа", code: "br", region: "Южная Америка" },
+    { country: "Аргентина", capital: "Буэнос-Айрес", code: "ar", region: "Южная Америка" },
+    { country: "Египет", capital: "Каир", code: "eg", region: "Африка" },
+    { country: "ЮАР", capital: "Претория", code: "za", region: "Африка" },
+    { country: "Австралия", capital: "Канберра", code: "au", region: "Океания" },
+    { country: "Индия", capital: "Нью-Дели", code: "in", region: "Азия" },
+    { country: "Китай", capital: "Пекин", code: "cn", region: "Азия" },
+    { country: "Южная Корея", capital: "Сеул", code: "kr", region: "Азия" },
+    { country: "Турция", capital: "Анкара", code: "tr", region: "Азия/Европа" },
+    { country: "Узбекистан", capital: "Ташкент", code: "uz", region: "Азия" },
+    { country: "Казахстан", capital: "Астана", code: "kz", region: "Азия" },
+    { country: "Мексика", capital: "Мехико", code: "mx", region: "Северная Америка" },
+    { country: "Швейцария", capital: "Берн", code: "ch", region: "Европа" },
+    { country: "Швеция", capital: "Стокгольм", code: "se", region: "Европа" },
+    { country: "Норвегия", capital: "Осло", code: "no", region: "Европа" },
+    { country: "Финляндия", capital: "Хельсинки", code: "fi", region: "Европа" },
+    { country: "Польша", capital: "Варшава", code: "pl", region: "Европа" },
+    { country: "Греция", capital: "Афины", code: "gr", region: "Европа" },
+    { country: "Португалия", capital: "Лиссабон", code: "pt", region: "Европа" },
+    { country: "Нидерланды", capital: "Амстердам", code: "nl", region: "Европа" },
+    { country: "ОАЭ", capital: "Абу-Даби", code: "ae", region: "Азия" },
+    { country: "Саудовская Аравия", capital: "Эр-Рияд", code: "sa", region: "Азия" },
+    { country: "Таиланд", capital: "Бангкок", code: "th", region: "Азия" },
+    { country: "Вьетнам", capital: "Ханой", code: "vn", region: "Азия" },
+    { country: "Индонезия", capital: "Джакарта", code: "id", region: "Азия" },
+    { country: "Малайзия", capital: "Куала-Лумпур", code: "my", region: "Азия" },
+    { country: "Сингапур", capital: "Сингапур", code: "sg", region: "Азия" },
+    { country: "Новая Зеландия", capital: "Веллингтон", code: "nz", region: "Океания" },
+    { country: "Колумбия", capital: "Богота", code: "co", region: "Южная Америка" },
+    { country: "Чили", capital: "Сантьяго", code: "cl", region: "Южная Америка" },
+    { country: "Перу", capital: "Лима", code: "pe", region: "Южная Америка" }
 ];
 
-// Расширенная база логических и географических фактов
+// Огромная и разнообразная база фактов и загадок (никаких повторов)
 const FACTS_DB = [
     { q: "Какая планета ближе всего к Солнцу?", options: ["Меркурий", "Венера", "Марс", "Земля"], answer: "Меркурий" },
     { q: "Сколько градусов составляют сумма углов треугольника?", options: ["180", "360", "90", "270"], answer: "180" },
@@ -54,7 +53,14 @@ const FACTS_DB = [
     { q: "Какая страна имеет наибольшую площадь в мире?", options: ["Россия", "Канада", "Китай", "США"], answer: "Россия" },
     { q: "Какая река считается самой длинной в мире?", options: ["Нил", "Амазонка", "Миссисипи", "Янцзы"], answer: "Нил" },
     { q: "В каком материке расположена самая большая пустыня Сахара?", options: ["Африка", "Азия", "Австралия", "Южная Америка"], answer: "Африка" },
-    { q: "Какая гора является самой высокой на Земле?", options: ["Эверест", "Килиманджаро", "Монблан", "Эльбрус"], answer: "Эверест" }
+    { q: "Какая гора является самой высокой на Земле?", options: ["Эверест", "Килиманджаро", "Монблан", "Эльбрус"], answer: "Эверест" },
+    { q: "Сколько континентов на планете Земля?", options: ["6", "5", "7", "4"], answer: "6" },
+    { q: "Какой газ преобладает в атмосфере Земли?", options: ["Азот", "Кислород", "Углекислый газ", "Водород"], answer: "Азот" },
+    { q: "Какая столица у Австралии?", options: ["Канберра", "Сидней", "Мельбурн", "Брисбен"], answer: "Канберра" },
+    { q: "Какое государство является самым маленьким в мире?", options: ["Ватикан", "Монако", "Сан-Марино", "Лихтенштейн"], answer: "Ватикан" },
+    { q: "В какой стране находится город Стамбул?", options: ["Турция", "Греция", "Египет", "Италия"], answer: "Турция" },
+    { q: "Какая планета Солнечной системы известна как Красная планета?", options: ["Марс", "Юпитер", "Сатурн", "Венера"], answer: "Марс" },
+    { q: "Какой океан омывает восточное побережье США?", options: ["Атлантический", "Тихий", "Индийский", "Северный Ледовитый"], answer: "Атлантический" }
 ];
 
 const SoundManager = {
@@ -117,7 +123,6 @@ const Game = {
         this.loadQuestion();
     },
 
-    // ИИ-генератор вопросов (автоматически перемешивает и собирает бесконечные комбинации)
     generateQuestions() {
         let raw = [];
         if (this.currentMode === 'capital' || this.currentMode === 'flag') {
@@ -125,7 +130,6 @@ const Game = {
         } else if (this.currentMode === 'logic') {
             raw = [...FACTS_DB].sort(() => Math.random() - 0.5);
         }
-        // Раунд теперь состоит из 10 вопросов
         this.questions = raw.slice(0, 10);
     },
 
@@ -135,7 +139,6 @@ const Game = {
             return;
         }
 
-        // Динамический расчет уровня сложности каждые 3 вопроса
         this.level = Math.floor(this.currentIndex / 3) + 1;
         document.getElementById('question-level').innerText = `Уровень ${this.level}`;
         document.getElementById('question-counter').innerText = `Вопрос ${this.currentIndex + 1} / ${this.questions.length}`;
@@ -175,7 +178,8 @@ const Game = {
         } 
         else if (this.currentMode === 'flag') {
             titleEl.innerText = `Чей это государственный флаг?`;
-            visualEl.innerHTML = q.flag;
+            // Загружаем настоящую картинку флага в высоком разрешении по коду страны
+            visualEl.innerHTML = `<img src="https://flagcdn.com/w320/${q.code}.png" alt="Флаг" class="flag-img">`;
             document.getElementById('question-prompt').innerText = `Выберите правильную страну из списка:`;
 
             let options = [q.country];
@@ -213,7 +217,6 @@ const Game = {
 
     startTimer() {
         clearInterval(this.timer);
-        // Время на ответ зависит от уровня (чем дальше, тем меньше времени)
         this.timeLeft = Math.max(15, 30 - (this.level * 3));
         document.getElementById('stat-timer').innerText = this.timeLeft;
 
@@ -241,7 +244,6 @@ const Game = {
             this.correctCount++;
             this.combo++;
             if (this.combo > this.maxCombo) this.maxCombo = this.combo;
-            // Бонус очков за уровень
             this.score += (100 * this.level) + (this.combo * 20);
         } else {
             if (btnElement) btnElement.classList.add('wrong');
@@ -304,7 +306,7 @@ const Game = {
 
         const bestScore = localStorage.getItem('cm_best_score') || 0;
         if (this.score > bestScore) {
-            localStorage.setItem('cm_best_score', this.score);
+            localStorage.getItem('cm_best_score', this.score);
         }
 
         document.getElementById('gameover-screen').classList.remove('hidden');
@@ -343,7 +345,7 @@ const UI = {
             const best = localStorage.getItem('cm_best_score') || 0;
             body.innerHTML = `
                 <p style="font-size: 18px; margin-bottom: 10px;">🥇 Ваш лучший результат: <strong>${best} очков</strong></p>
-                <p style="color: var(--text-muted);">ИИ-генератор усложняет игру с каждым новым уровнем!</p>
+                <p style="color: var(--text-muted);">ИИ-генератор подбирает новые комбинации каждый раз!</p>
             `;
         } else if (type === 'settings') {
             title.innerText = "НАСТРОЙКИ";
