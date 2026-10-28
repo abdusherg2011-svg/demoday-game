@@ -62,9 +62,8 @@ body, html {
     border-radius: 16px;
 }
 
-/* Главное меню */
 #main-menu {
-    max-width: 700px;
+    max-width: 750px;
     padding: 30px;
     text-align: center;
 }
@@ -169,7 +168,6 @@ body, html {
     background: rgba(0, 243, 255, 0.15);
 }
 
-/* Игровой экран */
 #game-screen {
     justify-content: flex-start;
     padding: 20px;
@@ -316,7 +314,6 @@ body, html {
     border-color: var(--danger) !important;
 }
 
-/* Модальные окна */
 .modal-overlay {
     position: fixed;
     top: 0;

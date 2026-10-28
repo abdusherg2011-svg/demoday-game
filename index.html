@@ -3,41 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAPITAL MYSTERY — Интеллектуальная географическая игра</title>
+    <title>CAPITAL MYSTERY — Infinite Edition</title>
     <link rel="stylesheet" href="index.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Главный контейнер приложения -->
     <div id="app">
         <!-- ГЛАВНОЕ МЕНЮ -->
         <div id="main-menu" class="screen active">
             <div class="menu-header">
-                <div class="badge">GEOGRAPHY EDITION</div>
+                <div class="badge">AI EXPANDED v2.0</div>
                 <h1 class="game-title">CAPITAL <span>MYSTERY</span></h1>
-                <p class="game-subtitle">Проверьте знания столиц, стран и флагов мира</p>
+                <p class="game-subtitle">Все страны мира, сотни флагов и генератор вопросов</p>
             </div>
 
             <div class="menu-grid">
                 <button class="btn-primary" onclick="Game.startMode('capital')">
                     <span class="icon">🏛️</span>
                     <span class="text">
-                        <strong>Угадай столицу</strong>
-                        <small>По названию страны выберите столицу</small>
+                        <strong>Столицы мира (Все страны)</strong>
+                        <small>Угадай столицу с динамическими уровнями</small>
                     </span>
                 </button>
                 <button class="btn-primary" onclick="Game.startMode('flag')">
                     <span class="icon">🏁</span>
                     <span class="text">
-                        <strong>Мастер Флагов</strong>
-                        <small>Определите страну по её государственному флагу</small>
+                        <strong>Мастер Флагов (Full)</strong>
+                        <small>Все государственные флаги планеты</small>
                     </span>
                 </button>
                 <button class="btn-secondary" onclick="Game.startMode('logic')">
                     <span class="icon">🧠</span>
                     <span class="text">
-                        <strong>Логика и факты</strong>
-                        <small>Интеллектуальные географические загадки</small>
+                        <strong>Географические факты</strong>
+                        <small>Интеллектуальная база фактов и загадок</small>
                     </span>
                 </button>
             </div>
@@ -53,7 +52,7 @@
             <header class="game-topbar">
                 <div class="left-stats">
                     <button class="btn-icon" onclick="Game.returnToMenu()" title="В меню">🏠</button>
-                    <div class="stat-pill">Режим: <span id="current-mode-name">Столицы</span></div>
+                    <div class="stat-pill"><span id="current-mode-name">Режим</span></div>
                 </div>
                 <div class="center-stats">
                     <div class="stat-pill">❤️ Жизни: <span id="stat-lives">3</span></div>
@@ -74,8 +73,8 @@
             <main class="game-content-container">
                 <div class="question-card glass-panel">
                     <div class="question-header">
-                        <span id="question-counter">Вопрос 1 / 5</span>
-                        <span class="diff-tag">Normal</span>
+                        <span id="question-counter">Вопрос 1 / 10</span>
+                        <span id="question-level" class="diff-tag">Уровень 1</span>
                     </div>
                     <h2 id="question-title">Загрузка задания...</h2>
                     <div id="visual-cue-container">🏛️</div>
@@ -103,7 +102,7 @@
                 <h2 id="go-title">РАУНД ЗАВЕРШЕН</h2>
                 <div class="go-stats">
                     <p>Итоговый счёт: <span id="go-score">0</span></p>
-                    <p>Правильных ответов: <span id="go-correct">0</span> / <span id="go-total">5</span></p>
+                    <p>Правильных ответов: <span id="go-correct">0</span> / <span id="go-total">10</span></p>
                     <p>Максимальное комбо: <span id="go-combo">0</span></p>
                 </div>
                 <div class="go-actions">

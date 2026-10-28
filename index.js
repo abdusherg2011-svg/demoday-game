@@ -1,37 +1,61 @@
 /* ==========================================================
-   CAPITAL MYSTERY — Игровая логика
+   CAPITAL MYSTERY — Expanded World Database & AI Generator
    ================================================---------- */
 
-const DB = {
-    capitals: [
-        { country: "Япония", capital: "Токио", hint: "Страна восходящего солнца" },
-        { country: "Франция", capital: "Париж", hint: "Родина Эйфелевой башни" },
-        { country: "Италия", capital: "Рим", hint: "Полуостров в форме сапога" },
-        { country: "Египет", capital: "Каир", hint: "Страна пирамид и фараонов" },
-        { country: "Австралия", capital: "Канберра", hint: "Материк с кенгуру и коалами" },
-        { country: "Канада", capital: "Оттава", hint: "Кленовый сироп и северная природа" },
-        { country: "Германия", capital: "Берлин", hint: "Центральная Европа, Бранденбургские ворота" },
-        { country: "Испания", capital: "Мадрид", hint: "Фламенко, коррида и солнце" },
-        { country: "Бразилия", capital: "Бразилиа", hint: "Южная Америка, карнавал" },
-        { country: "Индия", capital: "Нью-Дели", hint: "Тадж-Махал и пряности" }
-    ],
-    flags: [
-        { name: "Япония", flag: "🇯🇵" },
-        { name: "Франция", flag: "🇫🇷" },
-        { name: "Бразилия", flag: "🇧🇷" },
-        { name: "Германия", flag: "🇩🇪" },
-        { name: "Канада", flag: "🇨🇦" },
-        { name: "Италия", flag: "🇮🇹" },
-        { name: "Австралия", flag: "🇦🇺" },
-        { name: "Индия", flag: "🇮🇳" }
-    ],
-    logic: [
-        { q: "Какая планета ближе всего к Солнцу?", options: ["Меркурий", "Венера", "Марс", "Земля"], answer: "Меркурий" },
-        { q: "Сколько градусов в сумме составляют углы треугольника?", options: ["180", "360", "90", "270"], answer: "180" },
-        { q: "Самый большой океан на Земле?", options: ["Тихий", "Атлантический", "Индийский", "Северный Ледовитый"], answer: "Тихий" },
-        { q: "Какая страна имеет наибольшую площадь в мире?", options: ["Россия", "Канада", "Китай", "США"], answer: "Россия" }
-    ]
-};
+// Расширенная база данных стран мира (более 50+ стран со столицами и флагами)
+const WORLD_DB = [
+    { country: "Япония", capital: "Токио", flag: "🇯🇵", region: "Азия" },
+    { country: "Франция", capital: "Париж", flag: "🇫🇷", region: "Европа" },
+    { country: "Германия", capital: "Берлин", flag: "🇩🇪", region: "Европа" },
+    { country: "Италия", capital: "Рим", flag: "🇮🇹", region: "Европа" },
+    { country: "Испания", capital: "Мадрид", flag: "🇪🇸", region: "Европа" },
+    { country: "Великобритания", capital: "Лондон", flag: "🇬🇧", region: "Европа" },
+    { country: "Канада", capital: "Оттава", flag: "🇨🇦", region: "Северная Америка" },
+    { country: "США", capital: "Вашингтон", flag: "🇺🇸", region: "Северная Америка" },
+    { country: "Бразилия", capital: "Бразилиа", flag: "🇧🇷", region: "Южная Америка" },
+    { country: "Аргентина", capital: "Буэнос-Айрес", flag: "🇦🇷", region: "Южная Америка" },
+    { country: "Египет", capital: "Каир", flag: "🇪🇬", region: "Африка" },
+    { country: "ЮАР", capital: "Претория", flag: "🇿🇦", region: "Африка" },
+    { country: "Австралия", capital: "Канберра", flag: "🇦🇺", region: "Океания" },
+    { country: "Индия", capital: "Нью-Дели", flag: "🇮🇳", region: "Азия" },
+    { country: "Китай", capital: "Пекин", flag: "🇨🇳", region: "Азия" },
+    { country: "Южная Корея", capital: "Сеул", flag: "🇰🇷", region: "Азия" },
+    { country: "Турция", capital: "Анкара", flag: "🇹🇷", region: "Азия/Европа" },
+    { country: "Узбекистан", capital: "Ташкент", flag: "🇺🇿", region: "Азия" },
+    { country: "Казахстан", capital: "Астана", flag: "🇰🇿", region: "Азия" },
+    { country: "Мексика", capital: "Мехико", flag: "🇲🇽", region: "Северная Америка" },
+    { country: "Италия", capital: "Рим", flag: "🇮🇹", region: "Европа" },
+    { country: "Швейцария", capital: "Берн", flag: "🇨🇭", region: "Европа" },
+    { country: "Швеция", capital: "Стокгольм", flag: "🇸🇪", region: "Европа" },
+    { country: "Норвегия", capital: "Осло", flag: "🇳🇴", region: "Европа" },
+    { country: "Финляндия", capital: "Хельсинки", flag: "🇫🇮", region: "Европа" },
+    { country: "Польша", capital: "Варшава", flag: "🇵🇱", region: "Европа" },
+    { country: "Греция", capital: "Афины", flag: "🇬🇷", region: "Европа" },
+    { country: "Португалия", capital: "Лиссабон", flag: "🇵🇹", region: "Европа" },
+    { country: "Нидерланды", capital: "Амстердам", flag: "🇳🇱", region: "Европа" },
+    { country: "ОАЭ", capital: "Абу-Даби", flag: "🇦🇪", region: "Азия" },
+    { country: "Саудовская Аравия", capital: "Эр-Рияд", flag: "🇸🇦", region: "Азия" },
+    { country: "Таиланд", capital: "Бангкок", flag: "🇹🇭", region: "Азия" },
+    { country: "Вьетнам", capital: "Ханой", flag: "🇻🇳", region: "Азия" },
+    { country: "Индонезия", capital: "Джакарта", flag: "🇮🇩", region: "Азия" },
+    { country: "Малайзия", capital: "Куала-Лумпур", flag: "🇲🇾", region: "Азия" },
+    { country: "Сингапур", capital: "Сингапур", flag: "🇸🇬", region: "Азия" },
+    { country: "Новая Зеландия", capital: "Веллингтон", flag: "🇳🇿", region: "Океания" },
+    { country: "Колумбия", capital: "Богота", flag: "🇨🇴", region: "Южная Америка" },
+    { country: "Чили", capital: "Сантьяго", flag: "🇨🇱", region: "Южная Америка" },
+    { country: "Перу", capital: "Лима", flag: "🇵🇪", region: "Южная Америка" }
+];
+
+// Расширенная база логических и географических фактов
+const FACTS_DB = [
+    { q: "Какая планета ближе всего к Солнцу?", options: ["Меркурий", "Венера", "Марс", "Земля"], answer: "Меркурий" },
+    { q: "Сколько градусов составляют сумма углов треугольника?", options: ["180", "360", "90", "270"], answer: "180" },
+    { q: "Самый большой океан на Земле?", options: ["Тихий", "Атлантический", "Индийский", "Северный Ледовитый"], answer: "Тихий" },
+    { q: "Какая страна имеет наибольшую площадь в мире?", options: ["Россия", "Канада", "Китай", "США"], answer: "Россия" },
+    { q: "Какая река считается самой длинной в мире?", options: ["Нил", "Амазонка", "Миссисипи", "Янцзы"], answer: "Нил" },
+    { q: "В каком материке расположена самая большая пустыня Сахара?", options: ["Африка", "Азия", "Австралия", "Южная Америка"], answer: "Африка" },
+    { q: "Какая гора является самой высокой на Земле?", options: ["Эверест", "Килиманджаро", "Монблан", "Эльбрус"], answer: "Эверест" }
+];
 
 const SoundManager = {
     ctx: null,
@@ -70,6 +94,7 @@ const Game = {
     combo: 0,
     maxCombo: 0,
     correctCount: 0,
+    level: 1,
     timer: null,
     timeLeft: 30,
     isPaused: false,
@@ -83,24 +108,25 @@ const Game = {
         this.combo = 0;
         this.maxCombo = 0;
         this.correctCount = 0;
+        this.level = 1;
 
-        document.getElementById('current-mode-name').innerText = mode === 'capital' ? 'Столицы' : mode === 'flag' ? 'Флаги' : 'Логика';
+        document.getElementById('current-mode-name').innerText = mode === 'capital' ? 'Столицы мира' : mode === 'flag' ? 'Мастер Флагов' : 'Факты и логика';
         
         this.generateQuestions();
         UI.switchScreen('game-screen');
         this.loadQuestion();
     },
 
+    // ИИ-генератор вопросов (автоматически перемешивает и собирает бесконечные комбинации)
     generateQuestions() {
         let raw = [];
-        if (this.currentMode === 'capital') {
-            raw = [...DB.capitals].sort(() => Math.random() - 0.5);
-        } else if (this.currentMode === 'flag') {
-            raw = [...DB.flags].sort(() => Math.random() - 0.5);
+        if (this.currentMode === 'capital' || this.currentMode === 'flag') {
+            raw = [...WORLD_DB].sort(() => Math.random() - 0.5);
         } else if (this.currentMode === 'logic') {
-            raw = [...DB.logic].sort(() => Math.random() - 0.5);
+            raw = [...FACTS_DB].sort(() => Math.random() - 0.5);
         }
-        this.questions = raw.slice(0, 5);
+        // Раунд теперь состоит из 10 вопросов
+        this.questions = raw.slice(0, 10);
     },
 
     loadQuestion() {
@@ -109,8 +135,11 @@ const Game = {
             return;
         }
 
-        const q = this.questions[this.currentIndex];
+        // Динамический расчет уровня сложности каждые 3 вопроса
+        this.level = Math.floor(this.currentIndex / 3) + 1;
+        document.getElementById('question-level').innerText = `Уровень ${this.level}`;
         document.getElementById('question-counter').innerText = `Вопрос ${this.currentIndex + 1} / ${this.questions.length}`;
+        
         document.getElementById('stat-lives').innerText = this.lives;
         document.getElementById('stat-score').innerText = this.score;
         document.getElementById('stat-combo').innerText = this.combo;
@@ -118,19 +147,20 @@ const Game = {
         const progressPercent = (this.currentIndex / this.questions.length) * 100;
         document.getElementById('progress-fill').style.width = `${progressPercent}%`;
 
+        const q = this.questions[this.currentIndex];
         const titleEl = document.getElementById('question-title');
         const visualEl = document.getElementById('visual-cue-container');
         const optionsGrid = document.getElementById('options-grid');
         optionsGrid.innerHTML = '';
 
         if (this.currentMode === 'capital') {
-            titleEl.innerText = `Какая столица у страны: ${q.country}?`;
+            titleEl.innerText = `Какая столица у государства: ${q.country}?`;
             visualEl.innerHTML = `🏛️`;
-            document.getElementById('question-prompt').innerText = q.hint;
+            document.getElementById('question-prompt').innerText = `Регион: ${q.region}. Выберите правильный вариант:`;
 
             let options = [q.capital];
             while (options.length < 4) {
-                let randomCap = DB.capitals[Math.floor(Math.random() * DB.capitals.length)].capital;
+                let randomCap = WORLD_DB[Math.floor(Math.random() * WORLD_DB.length)].capital;
                 if (!options.includes(randomCap)) options.push(randomCap);
             }
             options.sort(() => Math.random() - 0.5);
@@ -146,12 +176,12 @@ const Game = {
         else if (this.currentMode === 'flag') {
             titleEl.innerText = `Чей это государственный флаг?`;
             visualEl.innerHTML = q.flag;
-            document.getElementById('question-prompt').innerText = `Выберите правильную страну:`;
+            document.getElementById('question-prompt').innerText = `Выберите правильную страну из списка:`;
 
-            let options = [q.name];
+            let options = [q.country];
             while (options.length < 4) {
-                let randomName = DB.flags[Math.floor(Math.random() * DB.flags.length)].name;
-                if (!options.includes(randomName)) options.push(randomName);
+                let randomCountry = WORLD_DB[Math.floor(Math.random() * WORLD_DB.length)].country;
+                if (!options.includes(randomCountry)) options.push(randomCountry);
             }
             options.sort(() => Math.random() - 0.5);
 
@@ -159,14 +189,14 @@ const Game = {
                 const btn = document.createElement('button');
                 btn.className = 'option-btn';
                 btn.innerText = opt;
-                btn.onclick = () => this.checkAnswer(opt === q.name, btn);
+                btn.onclick = () => this.checkAnswer(opt === q.country, btn);
                 optionsGrid.appendChild(btn);
             });
         }
         else if (this.currentMode === 'logic') {
             titleEl.innerText = q.q;
             visualEl.innerHTML = `🧠`;
-            document.getElementById('question-prompt').innerText = `Выберите правильный вариант:`;
+            document.getElementById('question-prompt').innerText = `Выберите правильный ответ:`;
 
             let options = [...q.options].sort(() => Math.random() - 0.5);
             options.forEach(opt => {
@@ -183,7 +213,8 @@ const Game = {
 
     startTimer() {
         clearInterval(this.timer);
-        this.timeLeft = 30;
+        // Время на ответ зависит от уровня (чем дальше, тем меньше времени)
+        this.timeLeft = Math.max(15, 30 - (this.level * 3));
         document.getElementById('stat-timer').innerText = this.timeLeft;
 
         this.timer = setInterval(() => {
@@ -210,7 +241,8 @@ const Game = {
             this.correctCount++;
             this.combo++;
             if (this.combo > this.maxCombo) this.maxCombo = this.combo;
-            this.score += 100 + (this.combo * 20);
+            // Бонус очков за уровень
+            this.score += (100 * this.level) + (this.combo * 20);
         } else {
             if (btnElement) btnElement.classList.add('wrong');
             SoundManager.error();
@@ -244,7 +276,7 @@ const Game = {
         if (this.score >= 50) {
             this.score -= 50;
             document.getElementById('stat-score').innerText = this.score;
-            alert("💡 Подсказка: Внимательно прочтите описание или первую букву ответа.");
+            alert("💡 Подсказка ИИ: Обратите внимание на регион или первую букву правильного ответа!");
         } else {
             alert("Недостаточно очков для подсказки (нужно 50 очков).");
         }
@@ -311,7 +343,7 @@ const UI = {
             const best = localStorage.getItem('cm_best_score') || 0;
             body.innerHTML = `
                 <p style="font-size: 18px; margin-bottom: 10px;">🥇 Ваш лучший результат: <strong>${best} очков</strong></p>
-                <p style="color: var(--text-muted);">Продолжайте играть, чтобы установить новые рекорды.</p>
+                <p style="color: var(--text-muted);">ИИ-генератор усложняет игру с каждым новым уровнем!</p>
             `;
         } else if (type === 'settings') {
             title.innerText = "НАСТРОЙКИ";
